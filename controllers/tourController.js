@@ -25,7 +25,10 @@ export const getAllTourData = async(req,res) =>{
     const page = parseInt(req.query.page);
 
     try{
-         const allTours = await Tour.find({ featured: true }).skip(page * 6).limit(6);
+         const allTours = await Tour.find({ featured: true })
+         .populate("reviews")
+         .skip(page * 6)
+         .limit(6);
          res.status(200).json({
             success:true,
             count: allTours.length,
@@ -84,7 +87,7 @@ export const deleteTourData = async(req,res) =>{
 export const getTourDataById = async(req,res) =>{
     const id = req.params.id;
     try{
-         const tourData = await Tour.findById(id);
+         const tourData = await Tour.findById(id).populate("reviews");
          res.status(200).json({
             success:true,
             message:"Record Found!",
@@ -124,7 +127,7 @@ export const searchTour = async (req, res) => {
     try {
         // Only perform the search if place name, minPeople, and maxPrice criteria are provided
         if (place && !isNaN(minPeople) && !isNaN(maxPrice)) {
-            const toursInfo = await Tour.find(query);
+            const toursInfo = await Tour.find(query).populate("reviews");
 
             if (toursInfo.length > 0) {
                 res.status(200).json({
@@ -157,7 +160,7 @@ export const searchTour = async (req, res) => {
 //http://localhost:4042/tours/offers/getTourOnOffer
 export const getOfferTours = async(req,res) =>{
     try{
-         const offers = await Tour.find({ featured: false }).limit(6);
+         const offers = await Tour.find({ featured: false }).populate("reviews").limit(6);
          res.status(200).json({
             success:true,
             count: offers.length,

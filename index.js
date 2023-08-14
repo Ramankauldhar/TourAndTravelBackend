@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import tourRoutes from './routes/toursRoutes.js';
 import usersRoutes from './routes/usersRoutes.js';
 import authRoute from './routes/authRoute.js';
+import reviewsRoutes from './routes/reviewsRoute.js';
 
 dotenv.config();
 const app = express();
@@ -42,6 +43,7 @@ app.use(cookieParser());
 app.use("/auth", authRoute);
 app.use("/tours", tourRoutes);
 app.use("/users", usersRoutes);
+app.use("/reviews", reviewsRoutes);
 
 app.listen(port, () => {
     console.log("Server is running on Post", port);
