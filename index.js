@@ -8,6 +8,7 @@ import tourRoutes from './routes/toursRoutes.js';
 import usersRoutes from './routes/usersRoutes.js';
 import authRoute from './routes/authRoute.js';
 import reviewsRoutes from './routes/reviewsRoute.js';
+import bookingRoutes from './routes/bookingRoutes.js';
 
 dotenv.config();
 const app = express();
@@ -44,6 +45,7 @@ app.use("/auth", authRoute);
 app.use("/tours", tourRoutes);
 app.use("/users", usersRoutes);
 app.use("/reviews", reviewsRoutes);
+app.use("/booking", bookingRoutes);
 
 app.listen(port, () => {
     console.log("Server is running on Post", port);
