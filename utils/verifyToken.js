@@ -23,7 +23,7 @@ export const verifyToken = (req, res, next) =>{
 
 export const verifyUser = (req, res, next) => {
     verifyToken(req, res, next, () => {
-        if(req.user.is === req.param.id || req.user.role === "admin"){
+        if(req.user.is === req.param.id || req.user.role === "user"){
             next();
         }else{
             return res.status(401).jsohn({
