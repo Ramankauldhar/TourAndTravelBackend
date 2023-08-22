@@ -16,7 +16,9 @@ export const register = async (req,res) =>{
             pswd: hash,
             photo: req.body.photo
         })
+
         await newUser.save();
+
         res.status(200).json({
             success: true,
             message: "Successfully added a new user"
@@ -51,8 +53,8 @@ export const login = async (req,res) =>{
 
         //create a jwt token
         const token = jwt.sign(
-            {id: user._id, role: user.role},
-            process.env.JWTsecretKey,
+            {id:user._id, role:user.role},
+            process.env.JWT_SECRET_KEY,
             {expiresIn: "200d"}
         );
 
