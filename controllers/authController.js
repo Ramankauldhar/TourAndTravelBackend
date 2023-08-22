@@ -62,7 +62,7 @@ export const login = async (req,res) =>{
             expires: token.expiresIn
         }).status(200).json({
             token,
-            data: { ... rest}, 
+            data: { ... rest }, 
             role
         })
     }catch(error){

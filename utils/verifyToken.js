@@ -6,7 +6,7 @@ export const verifyToken = (req, res, next) =>{
     if(!token){
         return res.status(401).json({
             success: false,
-            message: "Incorrect email or password"
+            message: "You are not authorized. Please Login First."
         });
     }
     jwt.verify(token, process.env.JWTsecretKey, (error, user) => {
@@ -23,16 +23,12 @@ export const verifyToken = (req, res, next) =>{
 
 export const verifyUser = (req, res, next) => {
     verifyToken(req, res, next, () => {
-        if(req.user.is === req.param.id || req.user.role === "user"){
+        if(req.user.id === req.param.id || req.user.role === "user"){
             next();
         }else{
-<<<<<<< HEAD
             return res.status(401).json({
-=======
-            return res.status(401).jsohn({
->>>>>>> origin/main
                 success:false,
-                message:"Incorrect user or password"
+                message:"Please Login First."
             });
         }
     });
@@ -40,16 +36,12 @@ export const verifyUser = (req, res, next) => {
 
 export const verifyAdmin = (req, res, next) => {
     verifyToken(req, res, next, () => {
-        if(req.user.is === req.param.id || req.user.role === "admin"){
+        if(req.user.role === "admin"){
             next();
         }else{
-<<<<<<< HEAD
             return res.status(401).json({
-=======
-            return res.status(401).jsohn({
->>>>>>> origin/main
                 success:false,
-                message:"Incorrect user or password"
+                message:"Please Login First."
             });
         }
     });
