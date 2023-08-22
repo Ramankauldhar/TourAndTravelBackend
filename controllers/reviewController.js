@@ -22,7 +22,11 @@ export const addReview = async(req,res) => {
         });
     }catch(error){
         res.status(500).json({
+<<<<<<< HEAD
             success: false,
+=======
+            success: true,
+>>>>>>> origin/main
             message: 'Failed to submit the review.',
             data: saveReview
         })

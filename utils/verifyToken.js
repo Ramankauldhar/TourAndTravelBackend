@@ -26,7 +26,11 @@ export const verifyUser = (req, res, next) => {
         if(req.user.is === req.param.id || req.user.role === "user"){
             next();
         }else{
+<<<<<<< HEAD
             return res.status(401).json({
+=======
+            return res.status(401).jsohn({
+>>>>>>> origin/main
                 success:false,
                 message:"Incorrect user or password"
             });
@@ -39,7 +43,11 @@ export const verifyAdmin = (req, res, next) => {
         if(req.user.is === req.param.id || req.user.role === "admin"){
             next();
         }else{
+<<<<<<< HEAD
             return res.status(401).json({
+=======
+            return res.status(401).jsohn({
+>>>>>>> origin/main
                 success:false,
                 message:"Incorrect user or password"
             });
