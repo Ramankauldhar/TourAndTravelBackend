@@ -9,7 +9,7 @@ export const verifyToken = (req, res, next) =>{
             message: "You are not authorized. Please Login First."
         });
     }
-    jwt.verify(token, process.env.JWTsecretKey, (error, user) => {
+    jwt.verify(token, process.env.JWT_SECRET_KEY, (error, user) => {
         if(error){
             return res.status(401).json({
                 success: false,
