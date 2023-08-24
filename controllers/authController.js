@@ -60,13 +60,16 @@ export const login = async (req,res) =>{
 
         //set token in the browser cookies and send response to the client
         res.cookie('accessToken', token, {
-            httpOnly: true,
-            expires: token.expiresIn
-        }).status(200).json({
-            token,
-            data: { ... rest }, 
-            role
-        })
+           httpOnly: true,
+           expires: new Date(Date.now() + 200 * 24 * 60 * 60 * 1000), // Set to 200 days in the future
+           sameSite: 'none', // For cross-site access
+           secure: true    
+        }).status(200)
+        .json({
+              token,
+              data: { ...rest },
+              role
+    });
     }catch(error){
         res.status(500).json({
                 success: false,
