@@ -5,8 +5,7 @@ export const verifyToken = (req, res, next) => {
 
     if (!token) {
         return res.status(401).json({
-            success: false,
-            message: "You are not authorized. Please Login First."
+            success: false
         });
     }
 
@@ -24,11 +23,11 @@ export const verifyToken = (req, res, next) => {
 };
 
 export const verifyUser = (req, res, next) => {
-    verifyToken(req, res, () => {
+    verifyToken(req, res,  () => {
         if (req.user.id === req.params.id || req.user.role === "user") {
             next();
-        } else {
-            return res.status(401).json({
+        } else{
+           return res.status(401).json({
                 success: false,
                 message: "Please Login First."
             });
@@ -43,7 +42,7 @@ export const verifyAdmin = (req, res, next) => {
         } else {
             return res.status(401).json({
                 success: false,
-                message: "Please Login First."
+                message: "Please Login as an admin."
             });
         }
     });

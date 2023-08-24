@@ -42,8 +42,8 @@ export const login = async (req,res) =>{
         });
         }
 
-       const matchPswd = await bcrypt.compare(req.body.pswd, user.pswd)
-         if (!matchPswd){
+       const matchPswd = await bcrypt.compare(req.body.pswd, user.pswd);
+       if (!matchPswd){
             return res.status(401).json({
                 success: false,
                 message: "Incorrect Email or Password"
@@ -58,7 +58,7 @@ export const login = async (req,res) =>{
             {expiresIn: "200d"}
         );
 
-        //set token in the browser cookies and send response to teh client
+        //set token in the browser cookies and send response to the client
         res.cookie('accessToken', token, {
             httpOnly: true,
             expires: token.expiresIn

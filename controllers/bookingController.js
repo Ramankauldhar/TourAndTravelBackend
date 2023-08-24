@@ -7,13 +7,13 @@ export const createTourBooking = async ( req, res) => {
         const saveBookingData = await tourBooking.save();
         res.status(200).json({
             success: true, 
-            messsage: "Your booking is completed!",
+            message: "Your booking is Done!",
             data: saveBookingData
         });
     }catch(error){
         res.status(500).json({
             success: false, 
-            messsage: "Internal server Error",
+            message: "Internal server Error",
             
         });
     };
@@ -24,13 +24,13 @@ export const getAllBookingData = async(req, res) =>{
         const bookings = await Booking.find();
         res.status(200).json({
             success: true,
-            messsage: "Result Found!",
+            message: "Result Found!",
             data: bookings
         });
     }catch(error){
         res.status(500).json({
             success: false, 
-            messsage: "Intrenal Server Error."
+            message: "Intrenal Server Error."
         });
     }
 }
@@ -43,13 +43,13 @@ export const getOneBookingData = async(req, res) =>{
         const bookings = await Booking.findById(id);
         res.status(200).json({
             success: true,
-            messsage: "Result Found!",
+            message: "Result Found!",
             data: bookings
         });
     }catch(error){
         res.status(404).json({
             success: false, 
-            messsage: "Result not found."
+            message: "Result not found."
         });
     }
 }
