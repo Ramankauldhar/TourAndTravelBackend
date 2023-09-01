@@ -53,3 +53,29 @@ export const getOneBookingData = async(req, res) =>{
         });
     }
 }
+export const getUserBookings = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    // Query the bookings for the user ID
+    const bookings = await Booking.find({ userId });
+
+    if (!bookings) {
+      return res.status(404).json({
+        success: false,
+        message: "No bookings found for this user.",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "User bookings retrieved successfully.",
+      data: bookings,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal server error.",
+    });
+  }
+}
