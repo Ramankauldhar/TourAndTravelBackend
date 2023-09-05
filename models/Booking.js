@@ -9,7 +9,7 @@ const bookingSchema = new mongoose.Schema(
       type: String,
       unique:true,
     },
-    tourName:{
+    tour:{
       type: String,
     },
     userName: {

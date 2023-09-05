@@ -13,7 +13,7 @@ export const createTourBooking = async ( req, res) => {
     }catch(error){
         res.status(500).json({
             success: false, 
-            message: "Internal server Error",
+            message: "Error: While doing you booking. Try again!",
             
         });
     };
@@ -53,6 +53,8 @@ export const getOneBookingData = async(req, res) =>{
         });
     }
 }
+
+//get all bookings of a user
 export const getUserBookings = async (req, res) => {
   try {
     const userId = req.user.id;
