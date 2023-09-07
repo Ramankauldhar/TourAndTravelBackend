@@ -58,6 +58,9 @@ export const login = async (req,res) =>{
             {expiresIn: "200d"}
         );
 
+        // Set token in localStorage
+        localStorage.setItem('accessToken', token);
+
         //set token in the browser cookies and send response to the client
         res.cookie('accessToken', token, {
            httpOnly: true,

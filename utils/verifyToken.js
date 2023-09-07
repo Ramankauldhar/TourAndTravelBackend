@@ -1,7 +1,11 @@
 import jwt from 'jsonwebtoken';
 
 export const verifyToken = (req, res, next) => {
-    const token = req.cookies.accessToken;
+    const localStorageToken = localStorage.getItem('accessToken'); // Retrieve token from localStorage
+    const cookieToken = req.cookies.accessToken; // Retrieve token from cookies
+
+    const token = localStorageToken || cookieToken; // Use the first token found
+
 
     if (!token) {
         return res.status(401).json({
