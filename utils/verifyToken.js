@@ -1,16 +1,14 @@
 import jwt from 'jsonwebtoken';
 
 export const verifyToken = (req, res, next) => {
-    const authorizationHeader = req.headers['authorization'];
+     const token = localStorage.getItem('token'); // Retrieve the token from localStorage
 
-    if (!authorizationHeader || !authorizationHeader.startsWith('Bearer ')) {
+    if (!token) {
         return res.status(401).json({
             success: false,
             message: 'Token is Missing or Invalid',
         });
     }
-
-    const token = authorizationHeader.split(' ')[1];
 
     jwt.verify(token, process.env.JWT_SECRET_KEY, (error, user) => {
         if (error) {

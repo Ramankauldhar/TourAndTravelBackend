@@ -58,6 +58,8 @@ export const login = async (req,res) =>{
             {expiresIn: "200d"}
         );
 
+        localStorage.setItem('token', token);
+        
         res.status(200).json({
               token,
               data: { ...rest },
