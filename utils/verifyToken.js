@@ -1,24 +1,22 @@
 import jwt from 'jsonwebtoken';
 
 export const verifyToken = (req, res, next) => {
-    const localStorageToken = localStorage.getItem('accessToken'); // Retrieve token from localStorage
-    const cookieToken = req.cookies.accessToken; // Retrieve token from cookies
+    const authorizationHeader = req.headers['authorization'];
 
-    const token = localStorageToken || cookieToken; // Use the first token found
-
-
-    if (!token) {
+    if (!authorizationHeader || !authorizationHeader.startsWith('Bearer ')) {
         return res.status(401).json({
             success: false,
-            message: "Token is Missing"
+            message: 'Token is Missing or Invalid',
         });
     }
+
+    const token = authorizationHeader.split(' ')[1];
 
     jwt.verify(token, process.env.JWT_SECRET_KEY, (error, user) => {
         if (error) {
             return res.status(401).json({
                 success: false,
-                message: "Token is invalid"
+                message: 'Token is invalid',
             });
         }
 
